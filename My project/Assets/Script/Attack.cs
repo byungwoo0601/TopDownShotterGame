@@ -4,10 +4,17 @@ public class Attack : MonoBehaviour
 {
     public GameObject bulletPos;
     public GameObject preFabBullet;
-    public float bulletSpeed = 10f;  // 원하는 일정한 총알 속도
-    public float attackSpeed = 0.5f;  // 발사 간격
+    public float bulletSpeed;
+    public float attackSpeed;
+
+    public Transform player;
 
     private float time;
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").transform;
+    }
 
     void Update()
     {
@@ -21,22 +28,32 @@ public class Attack : MonoBehaviour
 
     void Shoot()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && transform.tag == "Player")
         {
             time = 0;
 
-            // 마우스의 현재 위치를 기준으로 발사 방향을 계산
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 shootDirection = (mousePosition - bulletPos.transform.position).normalized;
 
-            // 총알을 생성하고 초기 위치와 방향을 설정
             GameObject bullet = Instantiate(preFabBullet, bulletPos.transform.position, Quaternion.FromToRotation(Vector3.up, shootDirection));
 
-            // 총알에 일정한 속도를 적용하여 발사 (벡터 정규화)
             Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
             bulletRb.velocity = shootDirection.normalized * bulletSpeed;
 
             Destroy(bullet, 2f);
         }
+
+        if(transform.tag == "Monster")
+        {
+            time = 0;
+
+            Vector3 dir = (player.position - bulletPos.transform.position).normalized;
+            GameObject bullet = Instantiate(preFabBullet, bulletPos.transform.position, Quaternion.FromToRotation(Vector3.up, dir));
+
+            bullet.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
+
+            Destroy(bullet, 4f);
+        }
     }
+    
 }

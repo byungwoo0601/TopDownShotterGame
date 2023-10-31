@@ -6,15 +6,19 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
+    public int hp = 5;
     void Update()
     {
-        // 플레이어 이동
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f) * moveSpeed * Time.deltaTime;
         transform.Translate(movement);
 
-        // 플레이어가 화면 밖으로 나가지 않도록 제한
+        
+    }
+
+    private void LateUpdate()
+    {
         float screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
         float screenHeight = Camera.main.orthographicSize;
         transform.position = new Vector3(
