@@ -4,28 +4,32 @@ using UnityEngine;
 
 public class MonsterDie : MonoBehaviour
 {
-    public GameObject explosionEffectPrefab;
+    public GameObject debrisPrefab; // 파편 프리팹 설정
+    public int debrisCount = 10; // 생성할 파편 개수
+    public float explosionForce = 0.3f; // 폭발력
 
 
-    private void Update()
+    private void OnDestroy()
     {
-        if(GetComponent<Traking>().hp <= 0)
-        {
-            Die();
-        }
+        
+
+        Explode();
     }
 
-    void Die()
+    void Explode()
     {
-        // 폭발 이펙트를 생성
-        Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
-
-        // 몬스터가 폭발할 때 사방으로 튀도록 폭발 효과 적용
-        Rigidbody2D[] allrigid = GetComponentsInChildren<Rigidbody2D>();
-        foreach (Rigidbody2D rid in allrigid)
+        for (int i = 0; i < debrisCount; i++)
         {
-            Vector3 ramdonDir = new Vector3(Random.Range(-5f, 5f), Random.Range(2f, 10f), Random.Range(-5f, 5f));
-            rid.AddForce(ramdonDir, ForceMode2D.Impulse);
+            GameObject debris = Instantiate(debrisPrefab, transform.position, Quaternion.identity);
+
+            Rigidbody2D debrisRb = debris.GetComponent<Rigidbody2D>();
+            Vector2 explosionDirection = Random.insideUnitCircle.normalized;
+            debrisRb.AddForce(explosionDirection * explosionForce, ForceMode2D.Impulse);
+
+            Destroy(debris, 1f);
         }
+
+        gameObject.SetActive(false);
+        Destroy(gameObject, 1f);
     }
 }
