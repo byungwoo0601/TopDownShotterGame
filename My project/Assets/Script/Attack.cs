@@ -9,6 +9,8 @@ public class Attack : MonoBehaviour
 
     public Transform player;
 
+    public int playerAtkDmg = 1;
+
     private float time;
 
     private void Start()
@@ -36,7 +38,7 @@ public class Attack : MonoBehaviour
             Vector2 shootDirection = (mousePosition - bulletPos.transform.position).normalized;
 
             GameObject bullet = Instantiate(preFabBullet, bulletPos.transform.position, Quaternion.FromToRotation(Vector3.up, shootDirection));
-
+            bullet.GetComponent<Crash>().atkDmg = playerAtkDmg;
             Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
             bulletRb.velocity = shootDirection.normalized * bulletSpeed;
 

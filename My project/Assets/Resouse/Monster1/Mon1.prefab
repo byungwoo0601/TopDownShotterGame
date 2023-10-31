@@ -61,7 +61,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4135319684977689289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.12, y: -2.82, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glowColor: {r: 0.87529016, g: 1, b: 0, a: 1}
-  glowBrightness: 10
+  glowBrightness: 1
   outlineWidth: 10
   alphaThreshold: 0.5
   drawOutside: 0
@@ -185,7 +185,8 @@ MonoBehaviour:
   preFabBullet: {fileID: 2259901572253478206, guid: aabac5bed5e06214f915c3342615cf85, type: 3}
   bulletSpeed: 7.5
   attackSpeed: 1.5
-  player: {fileID: 0}
+  player: {fileID: 6626452437229724917, guid: cc7af99ac7fc9694b9904553d9c5ba72, type: 3}
+  playerAtkDmg: 1
 --- !u!114 &-3845569051913427815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,4 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f48e117f30b6948a9b86e4c46544f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionEffectPrefab: {fileID: 8661010514089562856, guid: e0141b42864ec334a84cfb4d825015cb, type: 3}
+  debrisPrefab: {fileID: 2614296052346271532, guid: c4c1e6eb83b60e645a963d9e94fa30c3, type: 3}
+  debrisCount: 10
+  explosionForce: 0.3
