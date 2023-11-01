@@ -9,5 +9,6 @@ public class StatusInfo : MonoBehaviour
     private void OnMouseDown()
     {
         StatPanel.SetActive(true);
+        Time.timeScale = 0;
     }
 }

@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 
     public UiInfo uiInfo;
 
+    public int stage = 1;
     void Awake()
     {
         if (null == instance)
@@ -23,6 +24,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+    }
+
     public static UIManager Instance
     {
         get
@@ -33,6 +38,12 @@ public class UIManager : MonoBehaviour
             }
             return instance;
         }
+    }
+
+
+    public void CurStageInfo()
+    {
+        uiInfo.stage.text = "Stage " + stage;
     }
 
 }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3472329671792151815}
   - component: {fileID: 4774248332427657284}
   - component: {fileID: -1395939745259906783}
+  - component: {fileID: -223010811827980308}
   m_Layer: 7
   m_Name: Mon2
   m_TagString: Monster2
@@ -184,6 +185,27 @@ MonoBehaviour:
   debrisPrefab: {fileID: 4099123305302184321, guid: 9bd2cb9b94f486c4d8d330a276dc63e0, type: 3}
   debrisCount: 7
   explosionForce: 0.3
+--- !u!50 &-223010811827980308
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886124312037058157}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 100
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &8513242134297744917
 GameObject:
   m_ObjectHideFlags: 0

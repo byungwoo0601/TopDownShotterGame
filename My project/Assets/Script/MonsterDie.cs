@@ -11,13 +11,21 @@ public class MonsterDie : MonoBehaviour
 
     private void OnDestroy()
     {
-        
-
         Explode();
     }
 
     void Explode()
     {
+        if(transform.tag == "Monster1")
+        {
+            UIManager.Instance.uiInfo.triangleCount++;
+        }
+        else if(transform.tag == "Monster2")
+        {
+            UIManager.Instance.uiInfo.squareCount++;
+        }
+
+
         for (int i = 0; i < debrisCount; i++)
         {
             GameObject debris = Instantiate(debrisPrefab, transform.position, Quaternion.identity);
