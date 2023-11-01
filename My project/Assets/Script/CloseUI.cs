@@ -8,11 +8,14 @@ public class CloseUI : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Time.timeScale = 1.0f;
+
         uiObj.SetActive(false);
     }
 
     public void CloseUi()
     {
+        Time.timeScale = 1.0f;
         uiObj.SetActive(false);
     }
 }

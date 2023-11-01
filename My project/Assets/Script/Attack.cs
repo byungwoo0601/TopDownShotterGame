@@ -49,7 +49,7 @@ public class Attack : MonoBehaviour
             Destroy(bullet, 2f);
         }
 
-        if (transform.tag == "Monster")
+        if (transform.tag == "Monster1" || transform.tag == "Monster2"  || transform.tag == "Boss")
         {
             time = 0;
 
@@ -67,13 +67,6 @@ public class Attack : MonoBehaviour
     {
         if (transform.tag == "Boss")
         {
-            time = 0;
-            Vector3 dir = (player.position - bulletPos.transform.position).normalized;
-            GameObject bullet = Instantiate(preFabBullet, bulletPos.transform.position, Quaternion.FromToRotation(Vector3.up, dir));
-
-            bullet.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
-
-            Destroy(bullet, 4f);
             Invoke("Stop", 1.5f);
         }
     }
@@ -91,7 +84,6 @@ public class Attack : MonoBehaviour
     {
         patterIndex = patterIndex == 2 ? 0 : patterIndex + 1;
         curPatterCount = 0;
-
         switch (patterIndex)
         {
             case 0:
@@ -100,7 +92,6 @@ public class Attack : MonoBehaviour
             case 1:
                 FireShotSecond();
                 break;
-
             case 2:
                 FireAround();
                 break;
@@ -110,6 +101,7 @@ public class Attack : MonoBehaviour
 
     void FourDirections()
     {
+
         GameObject bullet = Instantiate(preFabBullet, transform.position, Quaternion.identity);
         GameObject bullet2 = Instantiate(preFabBullet, transform.position, Quaternion.identity);
         GameObject bullet3 = Instantiate(preFabBullet, transform.position, Quaternion.identity);
@@ -120,10 +112,10 @@ public class Attack : MonoBehaviour
         Rigidbody2D rid3 = bullet3.GetComponent<Rigidbody2D>();
         Rigidbody2D rid4 = bullet4.GetComponent<Rigidbody2D>();
 
-        rid.AddForce(Vector2.down * bulletSpeed, ForceMode2D.Impulse);
-        rid2.AddForce(Vector2.right * bulletSpeed, ForceMode2D.Impulse);
-        rid3.AddForce(Vector2.left * bulletSpeed, ForceMode2D.Impulse);
-        rid4.AddForce(Vector2.up * bulletSpeed, ForceMode2D.Impulse);
+        rid.AddForce(Vector2.down * bulletSpeed / 2, ForceMode2D.Impulse);
+        rid2.AddForce(Vector2.right * bulletSpeed / 2, ForceMode2D.Impulse);
+        rid3.AddForce(Vector2.left * bulletSpeed / 2, ForceMode2D.Impulse);
+        rid4.AddForce(Vector2.up * bulletSpeed / 2, ForceMode2D.Impulse);
 
         curPatterCount++;
 
@@ -135,35 +127,37 @@ public class Attack : MonoBehaviour
 
     void FireShotSecond()
     {
+
         GameObject bullet = Instantiate(preFabBullet, transform.position, Quaternion.identity);
-
         Rigidbody2D rid = bullet.GetComponent<Rigidbody2D>();
-        Vector2 dir = new Vector2(Mathf.Cos(Mathf.PI * 2 * curPatterCount / maxPatterCount[patterIndex]), -1);
 
-        rid.AddForce(dir.normalized * bulletSpeed, ForceMode2D.Impulse);
+        Vector2 dir = new Vector2(Mathf.Cos(Mathf.PI * 3 * curPatterCount / maxPatterCount[patterIndex]), -1);
+        rid.AddForce(dir.normalized * bulletSpeed / 6, ForceMode2D.Impulse);
 
         curPatterCount++;
 
         if (curPatterCount < maxPatterCount[patterIndex])
-        {
             Invoke("FireShotSecond", 0.15f);
-        }
+        else
+            Invoke("Think", 1.5f);
+
     }
 
     void FireAround()
     {
+
         int roundNuA = 50;
         int roundNuB = 40;
         int roundNuC = curPatterCount % 2 == 0 ? roundNuA : roundNuB;
 
-        for(int index = 0; index < roundNuC;  index++)
+        for (int index = 0; index < roundNuC; index++)
         {
             GameObject bullet = Instantiate(preFabBullet, transform.position, Quaternion.identity);
 
             Rigidbody2D rid = bullet.GetComponent<Rigidbody2D>();
             Vector2 dir = new Vector2(Mathf.Cos(Mathf.PI * 2 * index / roundNuC), Mathf.Sin(Mathf.PI * 2 * index / roundNuC));
 
-            rid.AddForce(dir.normalized * bulletSpeed, ForceMode2D.Impulse);
+            rid.AddForce(dir.normalized * bulletSpeed / 6, ForceMode2D.Impulse);
             Vector3 vec = Vector3.forward * 360 * index / roundNuC + Vector3.forward * 90;
             bullet.transform.Rotate(vec);
         }

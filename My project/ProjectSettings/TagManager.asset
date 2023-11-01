@@ -8,6 +8,8 @@ TagManager:
   - Boss
   - Monster1
   - Monster2
+  - UpHp
+  - UpAtk
   layers:
   - Default
   - TransparentFX

@@ -7,33 +7,31 @@ public class UiInfo : MonoBehaviour
 {
 
     public Text stage;
-    public int _stage = 1;
-
     public Text curHp;
     public Text curAtkDmg;
 
     public Text triangle;
     public Text square;
 
-    float time;
+    public int triangleCount = 0;
+    public int squareCount = 0;
+
     private void Update()
     {
-        time += Time.deltaTime;
-        if (time > 1.5)
-        {
-            time = 0;
-            CurPlayerInfo();
-        }
+        CurPlayerInfo();
+        CurMonsterCount();
     }
 
     public void CurPlayerInfo()
     {
-        curHp.text = "체력 : " + GameManager.Instance.playerController.hp;
+        curHp.text = "체력 : " + GameManager.Instance.playerController.hp + "/5";
         curAtkDmg.text = "공격력 : " + GameManager.Instance.attack.playerAtkDmg;
     }
 
-    public void CurStageInfo()
+    public void CurMonsterCount()
     {
-        stage.text = "Stage " + _stage;
+        triangle.text = triangleCount.ToString();
+        square.text = squareCount.ToString();
     }
+
 }

@@ -140,6 +140,10 @@ MonoBehaviour:
   bulletSpeed: 20
   attackSpeed: 0.4
   player: {fileID: 0}
+  playerAtkDmg: 1
+  patterIndex: 0
+  curPatterCount: 0
+  maxPatterCount: 
 --- !u!114 &6626452437229724912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
-  hp: 5
+  hp: 123123
 --- !u!1 &6626452437795044452
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Crash : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Crash : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Monster")
+        if (collision.transform.tag == "Monster1" || collision.transform.tag == "Monster2" || collision.transform.tag == "Boss")
         {
             collision.gameObject.GetComponent<Traking>().hp =
                 collision.gameObject.GetComponent<Traking>().hp - atkDmg;
@@ -29,7 +30,7 @@ public class Crash : MonoBehaviour
             {
                 Destroy(collision.gameObject);
 
-                Time.timeScale = 0;
+                SceneManager.LoadScene("GameStart");
             }
 
             Destroy(gameObject);
