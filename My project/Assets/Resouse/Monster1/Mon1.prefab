@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: -3845569051913427815}
   m_Layer: 7
   m_Name: Mon1
-  m_TagString: Monster
+  m_TagString: Monster1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,6 +187,9 @@ MonoBehaviour:
   attackSpeed: 1.5
   player: {fileID: 6626452437229724917, guid: cc7af99ac7fc9694b9904553d9c5ba72, type: 3}
   playerAtkDmg: 1
+  patterIndex: 0
+  curPatterCount: 0
+  maxPatterCount: 
 --- !u!114 &-3845569051913427815
 MonoBehaviour:
   m_ObjectHideFlags: 0

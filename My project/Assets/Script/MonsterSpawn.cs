@@ -42,7 +42,6 @@ public class MonsterSpawn : MonoBehaviour
                 );
             }
             int N = Percentage();
-
             Instantiate(monPrefab[N], dir, Quaternion.identity);
         }
     }
@@ -63,5 +62,26 @@ public class MonsterSpawn : MonoBehaviour
         }
 
         return num;
+    }
+
+    public void ChangeMonster()
+    {
+        //1스테이지에 10마리 세모 10
+        /*2 스테이지 10마리 세모 7 네모 3
+         * 3스테이지 12마리 세모 5 네모 7
+         * 
+         * - 세모 22 네모 10
+         * 
+         * 4스테이지 10마리 네모 10
+         * 5스테이지 9마리 보스 1 세모 5 네모 3
+         * 
+         * - 세모 27 네모 23 보스1
+         */
+        int curStage;
+        int totalMonster;
+
+        int triangleMonster;
+        int squareMonster;
+
     }
 }
